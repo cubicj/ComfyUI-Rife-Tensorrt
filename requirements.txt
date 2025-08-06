@@ -1,5 +1,6 @@
 einops
 colored
 polygraphy
-tensorrt==10.4.0
 cuda-python
+# TensorRT는 RTX 5090용으로 별도 설치 필요
+# pip install tensorrt-cu12 tensorrt-cu12-bindings tensorrt-cu12-libs --extra-index-url https://pypi.nvidia.com

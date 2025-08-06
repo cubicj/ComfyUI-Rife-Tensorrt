@@ -1,5 +1,6 @@
 import torch
 import time
+import os
 from trt_utilities import Engine
 import tensorrt
 
@@ -37,5 +38,12 @@ def export_trt(trt_path=None, onnx_path=None, use_fp16=True):
     return ret
 
 
-export_trt(trt_path="./models/rife49_ensemble_True_scale_1_sim.engine",
-           onnx_path="./models/rife49_ensemble_True_scale_1_sim.onnx", use_fp16=True)
+# ComfyUI models/tensorrt/rife 경로 설정
+comfy_models_path = os.path.abspath("../../models/tensorrt/rife")
+os.makedirs(comfy_models_path, exist_ok=True)
+
+engine_path = os.path.join(comfy_models_path, "rife49_ensemble_True_scale_1_sim.engine")
+onnx_path = "./models/rife49_ensemble_True_scale_1_sim.onnx"
+
+print(f"Engine will be saved to: {engine_path}")
+export_trt(trt_path=engine_path, onnx_path=onnx_path, use_fp16=True)
